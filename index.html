@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Knockout.js Tests</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		
+		<h1 data-bind="text: animal"></h1>
+
+		<input data-bind="value: animal, valueUpdate: 'afterkeydown'" />
+		<button data-bind="click: addAnimal">Add Animal</button>
+
+		<ul data-bind="foreach: animalsArray">
+			<li data-bind="text: $data"></li>
+		</ul>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+
+		<script>
+
+			// View Model //
+			var ViewModel = function(){
+				
+				this.animal = ko.observable("Pigeon");
+				this.animalsArray = ko.observableArray(["Cat", "Dog", "Elephant"]);
+				this.addAnimal = function(){
+					this.animalsArray.push(this.animal())
+				}
+			}
+
+			ko.applyBindings(new ViewModel()); // init ViewModel //
+
+		</script>
+
+	</body>
+</html>
